@@ -8,5 +8,6 @@ import com.proxglobal.worlcupapp.base.BaseFragment
 class CartFragment: BaseFragment<FragmentCartBinding>() {
     override fun getDataBinding(): FragmentCartBinding {
         return FragmentCartBinding.inflate(layoutInflater)
+        //ABDCC
     }
 }
