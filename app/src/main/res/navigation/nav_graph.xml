@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        tools:layout="@layout/fragment_home"
+        android:id="@+id/homeFragment"
+        android:name="com.example.sportshopapplication.view.fragment.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_cart"
+        android:id="@+id/cartFragment"
+        android:name="com.example.sportshopapplication.view.fragment.CartFragment"
+        android:label="CartFragment" />
+    <fragment
+        tools:layout="@layout/fragment_category"
+        android:id="@+id/categoryFragment"
+        android:name="com.example.sportshopapplication.view.fragment.CategoryFragment"
+        android:label="CategoryFragment" />
+    <fragment
+        tools:layout="@layout/fragment_setting"
+        android:id="@+id/settingFragment"
+        android:name="com.example.sportshopapplication.view.fragment.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        tools:layout="@layout/fragment_favorite"
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.sportshopapplication.view.fragment.FavoriteFragment"
+        android:label="FavoriteFragment" />
+    <fragment
+        tools:layout="@layout/fragment_search"
+        android:id="@+id/searchFragment"
+        android:name="com.example.sportshopapplication.view.fragment.SearchFragment"
+        android:label="SearchFragment" />
+</navigation>
