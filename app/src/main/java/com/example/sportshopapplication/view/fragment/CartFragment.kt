@@ -9,7 +9,7 @@ class CartFragment: BaseFragment<FragmentCartBinding>() {
     override fun getDataBinding(): FragmentCartBinding {
         return FragmentCartBinding.inflate(layoutInflater)
         //ABDfgdfgfdCC
-        //ânsa
+        //manh cho
 
     }
 
