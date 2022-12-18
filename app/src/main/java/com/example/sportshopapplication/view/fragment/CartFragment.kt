@@ -10,4 +10,8 @@ class CartFragment: BaseFragment<FragmentCartBinding>() {
         return FragmentCartBinding.inflate(layoutInflater)
         //ABDCCdasdasdasd
     }
+
+    override fun initData() {
+        super.initData()
+    }
 }
