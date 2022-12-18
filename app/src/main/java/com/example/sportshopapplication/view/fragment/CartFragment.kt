@@ -10,5 +10,6 @@ class CartFragment: BaseFragment<FragmentCartBinding>() {
         return FragmentCartBinding.inflate(layoutInflater)
         //ABDfgdfgfdCC
         //ânsa
+
     }
 }
