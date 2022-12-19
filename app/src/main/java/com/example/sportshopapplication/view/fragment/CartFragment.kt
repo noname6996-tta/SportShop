@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ItemRanking.adapter.ItemCartAdapter
 import com.example.sportshopapplication.databinding.FragmentCartBinding
 import com.example.sportshopapplication.databinding.FragmentHomeBinding
 import com.example.sportshopapplication.viewmodel.CartViewModel
