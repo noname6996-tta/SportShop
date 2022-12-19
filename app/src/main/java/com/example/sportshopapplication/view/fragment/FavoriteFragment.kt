@@ -4,13 +4,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.ItemRanking.adapter.HomeItemAdapter
-import com.example.ItemRanking.adapter.HomeItemFavoriteAdapter
+import com.example.sportshopapplication.adapter.HomeItemFavoriteAdapter
 import com.example.sportshopapplication.databinding.FragmentFavoriteBinding
-import com.example.sportshopapplication.databinding.FragmentHomeBinding
-import com.example.sportshopapplication.databinding.FragmentItemBinding
-import com.example.sportshopapplication.model.Item
-import com.example.sportshopapplication.model.local.FavoriteItem
 import com.example.sportshopapplication.viewmodel.FavoriteItemViewModel
 import com.proxglobal.worlcupapp.base.BaseFragment
 

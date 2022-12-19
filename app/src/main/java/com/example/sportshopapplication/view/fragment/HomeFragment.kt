@@ -3,9 +3,9 @@ package com.example.sportshopapplication.view.fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ItemRanking.adapter.HomeItemAdapter
-import com.example.musicRanking.adapter.HomeItemSaleAdapter
 import com.example.sportshopapplication.adapter.HomeDownloadAdapter
+import com.example.sportshopapplication.adapter.HomeItemAdapter
+import com.example.sportshopapplication.adapter.HomeItemSaleAdapter
 import com.example.sportshopapplication.databinding.FragmentHomeBinding
 import com.example.sportshopapplication.model.Item
 import com.example.sportshopapplication.model.local.Photos

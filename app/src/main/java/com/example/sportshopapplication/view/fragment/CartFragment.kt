@@ -1,14 +1,11 @@
 package com.example.sportshopapplication.view.fragment
 
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ItemRanking.adapter.ItemCartAdapter
+import com.example.sportshopapplication.adapter.ItemCartAdapter
 import com.example.sportshopapplication.databinding.FragmentCartBinding
-import com.example.sportshopapplication.databinding.FragmentHomeBinding
 import com.example.sportshopapplication.viewmodel.CartViewModel
-import com.example.sportshopapplication.viewmodel.FavoriteItemViewModel
 import com.proxglobal.worlcupapp.base.BaseFragment
 
 class CartFragment: BaseFragment<FragmentCartBinding>() {
