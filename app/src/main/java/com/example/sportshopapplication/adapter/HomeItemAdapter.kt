@@ -1,4 +1,4 @@
-package com.example.ItemRanking.adapter
+package com.example.sportshopapplication.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.example.sportshopapplication.databinding.LayoutItemBinding
 import com.example.sportshopapplication.model.Item
 
 
-class HomeItemAdapter : RecyclerView.Adapter<HomeFragmentRankingViewHolder>() {
+class HomeItemAdapter : RecyclerView.Adapter<HomeFragmentItemViewHolder>() {
     private var Items: List<Item> = listOf()
     private lateinit var context: Context
     fun setItemList(movies: List<Item>, context: Context) {
@@ -27,13 +27,13 @@ class HomeItemAdapter : RecyclerView.Adapter<HomeFragmentRankingViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HomeFragmentRankingViewHolder {
+    ): HomeFragmentItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = LayoutItemBinding.inflate(inflater, parent, false)
-        return HomeFragmentRankingViewHolder(binding)
+        return HomeFragmentItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomeFragmentRankingViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeFragmentItemViewHolder, position: Int) {
         val Item = Items[position]
         holder.binding.tvTopRankingNameSong.text = Item.tenSanPham
         holder.binding.tvTopRankingArtisSong.text = Item.gia
@@ -51,6 +51,6 @@ class HomeItemAdapter : RecyclerView.Adapter<HomeFragmentRankingViewHolder>() {
     }
 }
 
-class HomeFragmentRankingViewHolder(val binding: LayoutItemBinding) :
+class HomeFragmentItemViewHolder(val binding: LayoutItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 }

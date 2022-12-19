@@ -1,4 +1,4 @@
-package com.example.ItemRanking.adapter
+package com.example.sportshopapplication.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

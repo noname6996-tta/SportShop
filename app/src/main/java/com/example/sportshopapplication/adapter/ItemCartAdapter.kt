@@ -1,4 +1,4 @@
-package com.example.ItemRanking.adapter
+package com.example.sportshopapplication.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sportshopapplication.R
 import com.example.sportshopapplication.databinding.ItemCartBinding
-import com.example.sportshopapplication.databinding.LayoutItemBinding
-import com.example.sportshopapplication.model.Item
 import com.example.sportshopapplication.model.local.Cart
 
 
