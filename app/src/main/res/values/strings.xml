@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SportShopApplication</string>
+    <string name="pricacy_terms"><![CDATA[Pricacy & Terms]]></string>
 </resources>

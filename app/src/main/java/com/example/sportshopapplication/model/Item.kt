@@ -1,5 +1,7 @@
 package com.example.sportshopapplication.model
 
+import android.os.Parcelable
+
 data class Item(
     var maSanPham : Int,
     var maDanhMuc : Int,
@@ -9,4 +11,4 @@ data class Item(
     var anh : String,
     var moTa : String,
     var gioiTinh : String
-)
+) : java.io.Serializable

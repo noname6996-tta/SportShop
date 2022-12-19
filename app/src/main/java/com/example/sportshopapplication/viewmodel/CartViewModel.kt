@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.sportshopapplication.data.database.LocalDatabase
+import com.example.sportshopapplication.model.Item
 import com.example.sportshopapplication.model.local.Cart
 import com.example.sportshopapplication.model.local.FavoriteItem
 import com.example.sportshopapplication.repository.CartRepository
@@ -69,9 +70,9 @@ class FavoriteItemViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    fun deleteCart(playList: FavoriteItem) {
+    fun deleteCart(maSanPham: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            favoriteItemRepository.deleteFavoriteItem(playList)
+            favoriteItemRepository.deleteFavoriteItem(maSanPham)
         }
     }
 
