@@ -32,4 +32,12 @@ class CartFragment: BaseFragment<FragmentCartBinding>() {
             cartItemAdapter.setItemList(playlist,requireContext())
         })
     }
+
+    override fun addEvent() {
+        super.addEvent()
+        cartItemAdapter.setClickShowMusic {
+            val musicPlayListViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+            musicPlayListViewModel.deleteCart(it)
+        }
+    }
 }

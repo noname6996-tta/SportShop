@@ -21,8 +21,8 @@ class ItemCartAdapter : RecyclerView.Adapter<CartItemViewHolder>() {
         notifyDataSetChanged()
     }
 
-    private var onClickPlayItem: ((Item) -> Unit)? = null
-    fun setClickShowMusic(listener: ((Item) -> Unit)) {
+    private var onClickPlayItem: ((Cart) -> Unit)? = null
+    fun setClickShowMusic(listener: ((Cart) -> Unit)) {
         onClickPlayItem = listener
     }
 
@@ -39,8 +39,14 @@ class ItemCartAdapter : RecyclerView.Adapter<CartItemViewHolder>() {
         val Item = Items[position]
         holder.binding.tvItemName.text = Item.tenSanPham
         holder.binding.tvGiaSanPham.text = Item.gia
+        holder.binding.tvNumberItem.text = Item.soLuong.toString()
         Glide.with(holder.itemView.context).load(Item.anh).error(R.drawable.demo_img_download)
             .into(holder.binding.imgItem)
+        holder.binding.imgRemoveItem.setOnClickListener {
+            onClickPlayItem?.let {
+                it(Item)
+            }
+        }
 //        holder.binding.layoutTopRanking.setOnClickListener {
 //            onClickPlayItem?.let {
 //                it(Item)
