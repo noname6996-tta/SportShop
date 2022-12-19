@@ -15,8 +15,8 @@ class FavoriteItemRepository(private val favoriteItemItemsDao: FavoriteItemItems
         favoriteItemItemsDao.updateFavoriteItem(FavoriteItem)
     }
 
-    suspend fun deleteFavoriteItem(FavoriteItem: FavoriteItem){
-        favoriteItemItemsDao.deleteFavoriteItem(FavoriteItem)
+    suspend fun deleteFavoriteItem(maSanPham: Int){
+        favoriteItemItemsDao.deleteFavoriteItem(maSanPham)
     }
 
     suspend fun deleteAllFavoriteItem(){

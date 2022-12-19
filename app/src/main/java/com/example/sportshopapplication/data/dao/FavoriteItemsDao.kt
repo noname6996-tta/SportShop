@@ -13,8 +13,8 @@ interface FavoriteItemItemsDao {
     @Update
     suspend fun updateFavoriteItem(FavoriteItem: FavoriteItem)
 
-    @Delete
-    suspend fun deleteFavoriteItem(FavoriteItem: FavoriteItem)
+    @Query("DELETE FROM favoriteItem_table WHERE maSanPham = :maSanPham")
+    suspend fun deleteFavoriteItem(maSanPham: Int)
 
     @Query("DELETE FROM favoriteItem_table")
     suspend fun deleteAllFavoriteItem()

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_cart"
@@ -39,4 +42,13 @@
         android:id="@+id/searchFragment"
         android:name="com.example.sportshopapplication.view.fragment.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        tools:layout="@layout/fragment_item"
+        android:id="@+id/itemFragment"
+        android:name="com.example.sportshopapplication.view.fragment.ItemFragment"
+        android:label="ItemFragment" >
+        <argument
+            android:name="item"
+            app:argType="com.example.sportshopapplication.model.Item" />
+    </fragment>
 </navigation>
