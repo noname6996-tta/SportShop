@@ -1,12 +1,13 @@
 package com.example.sportshopapplication.network
 
+import com.example.sportshopapplication.model.User
 import com.example.sportshopapplication.model.local.Cart
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Api {
-    @GET("msd/music/listened?offset=0")
-    suspend fun getToplistenedCrotines(): Cart
+    @GET("/selectUser.php")
+    suspend fun getUser(): User
 //
 //    @GET("msd/scmusic/download?offset=0&country=za")
 //    suspend fun getDownloadHome(): ResponseListened

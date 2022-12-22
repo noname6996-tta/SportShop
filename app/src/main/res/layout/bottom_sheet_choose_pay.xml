@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/background_radius_corner_topranking"
+    android:layout_height="140dp">
+
+    <View
+        android:id="@+id/viewThanhToanOff"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/background_yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thay toán khi nhận hàng"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintBottom_toBottomOf="@+id/viewThanhToanOff"
+        app:layout_constraintEnd_toEndOf="@+id/viewThanhToanOff"
+        app:layout_constraintStart_toStartOf="@+id/viewThanhToanOff"
+        app:layout_constraintTop_toTopOf="@+id/viewThanhToanOff" />
+
+    <View
+        android:id="@+id/viewThanhToanOnl"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/background_yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewThanhToanOff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán chuyển khoản"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintBottom_toBottomOf="@+id/viewThanhToanOnl"
+        app:layout_constraintEnd_toEndOf="@+id/viewThanhToanOnl"
+        app:layout_constraintStart_toStartOf="@+id/viewThanhToanOnl"
+        app:layout_constraintTop_toTopOf="@+id/viewThanhToanOnl" />
+</androidx.constraintlayout.widget.ConstraintLayout>

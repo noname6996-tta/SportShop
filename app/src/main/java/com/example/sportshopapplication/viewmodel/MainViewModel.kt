@@ -2,12 +2,15 @@ package com.example.sportshopapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.sportshopapplication.model.User
 import com.example.sportshopapplication.model.local.Cart
 import com.example.sportshopapplication.repository.Repository
+import kotlinx.coroutines.launch
 
 class MainViewModel(private val repostitory: Repository): ViewModel() {
 
-    val TopListenedHome = MutableLiveData<List<Cart>>()
+    val userInfoLogin = MutableLiveData<List<User>>()
 //    val DownloadHome = MutableLiveData<List<Music>>()
 //    val RankingHome = MutableLiveData<List<Music>>()
 //    val TopDownload = MutableLiveData<List<Music>>()
@@ -15,12 +18,12 @@ class MainViewModel(private val repostitory: Repository): ViewModel() {
 //    val MusicByGenres = MutableLiveData<List<Music>>()
 //    val searchByString = MutableLiveData<List<Music>>()
 //
-//    fun getTopListenedHomeCrotines(){
-//        viewModelScope.launch {
-//            val response = repostitory.getToplistenedCrotines()
-//            TopListenedHome.value = response.data
-//        }
-//    }
+    fun getUserInfo(){
+        viewModelScope.launch {
+            val response = repostitory.getUserInfo()
+            userInfoLogin.value = listOf(response)
+        }
+    }
 
 //    fun getDownloadHome(){
 //        viewModelScope.launch {

@@ -16,12 +16,19 @@
         <action
             android:id="@+id/action_homeFragment_to_itemFragment"
             app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listAllitemsfragment"
+            app:destination="@id/listAllitemsfragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_cart"
         android:id="@+id/cartFragment"
         android:name="com.example.sportshopapplication.view.fragment.CartFragment"
-        android:label="CartFragment" />
+        android:label="CartFragment" >
+        <action
+            android:id="@+id/action_cartFragment_to_buyFragment"
+            app:destination="@id/buyFragment" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_category"
         android:id="@+id/categoryFragment"
@@ -31,7 +38,14 @@
         tools:layout="@layout/fragment_setting"
         android:id="@+id/settingFragment"
         android:name="com.example.sportshopapplication.view.fragment.SettingFragment"
-        android:label="SettingFragment" />
+        android:label="SettingFragment" >
+        <action
+            android:id="@+id/action_settingFragment_to_changeAccountFragment"
+            app:destination="@id/changeAccountFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_showDonHangFragment"
+            app:destination="@id/showDonHangFragment" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_favorite"
         android:id="@+id/favoriteFragment"
@@ -51,4 +65,28 @@
             android:name="item"
             app:argType="com.example.sportshopapplication.model.Item" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_buy"
+        android:id="@+id/buyFragment"
+        android:name="com.example.sportshopapplication.view.fragment.BuyFragment"
+        android:label="BuyFragment" />
+    <fragment
+        tools:layout="@layout/fragment_change_account"
+        android:id="@+id/changeAccountFragment"
+        android:name="com.example.sportshopapplication.view.fragment.ChangeAccountFragment"
+        android:label="ChangeAccountFragment" />
+    <fragment
+        tools:layout="@layout/fragment_allitem"
+        android:id="@+id/listAllitemsfragment"
+        android:name="com.example.sportshopapplication.view.fragment.ListAllitemsfragment"
+        android:label="ListAllitemsfragment" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_showdonhang"
+        android:id="@+id/showDonHangFragment"
+        android:name="com.example.sportshopapplication.view.fragment.ShowDonHangFragment"
+        android:label="ShowDonHangFragment" />
 </navigation>

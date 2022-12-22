@@ -2,6 +2,7 @@ package com.example.sportshopapplication.view.fragment
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportshopapplication.adapter.ItemCartAdapter
 import com.example.sportshopapplication.databinding.FragmentCartBinding
@@ -29,12 +30,15 @@ class CartFragment: BaseFragment<FragmentCartBinding>() {
             cartItemAdapter.setItemList(playlist,requireContext())
         })
     }
-
     override fun addEvent() {
         super.addEvent()
         cartItemAdapter.setClickShowMusic {
             val musicPlayListViewModel = ViewModelProvider(this)[CartViewModel::class.java]
             musicPlayListViewModel.deleteCart(it)
+        }
+        binding.viewThanhToan.setOnClickListener {
+            var action = CartFragmentDirections.actionCartFragmentToBuyFragment()
+            findNavController().navigate(action)
         }
     }
 }

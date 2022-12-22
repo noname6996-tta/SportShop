@@ -1,8 +1,16 @@
 package com.example.sportshopapplication.view.fragment
 
+import android.content.Context
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.sportshopapplication.adapter.HomeDownloadAdapter
 import com.example.sportshopapplication.adapter.HomeItemAdapter
 import com.example.sportshopapplication.adapter.HomeItemSaleAdapter
@@ -10,20 +18,13 @@ import com.example.sportshopapplication.databinding.FragmentHomeBinding
 import com.example.sportshopapplication.model.Item
 import com.example.sportshopapplication.model.local.Photos
 import com.proxglobal.worlcupapp.base.BaseFragment
+import org.json.JSONObject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var runnable: Runnable
     var homeImageAdapter = HomeDownloadAdapter()
     var homeItemAdapter = HomeItemAdapter()
     var homeItemSaleAdapter = HomeItemSaleAdapter()
-    var itemSale = Item(1, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale2 = Item(2, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale3 = Item(3, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale4 = Item(4, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale5 = Item(5, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale6 = Item(6, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale7 = Item(7, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
-    var itemSale8 = Item(8, 1, "Vợt cầu lông adidas", 0, "54.000 đ", "", "", "")
     override fun getDataBinding(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
     }
@@ -43,6 +44,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.addEvent()
         binding.searchView.setOnClickListener {
             var action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+            findNavController().navigate(action)
+        }
+        binding.tvMoreItem.setOnClickListener {
+            var action = HomeFragmentDirections.actionHomeFragmentToListAllitemsfragment("item")
+            findNavController().navigate(action)
+        }
+        binding.tvMoreSaleItem.setOnClickListener {
+            var action = HomeFragmentDirections.actionHomeFragmentToListAllitemsfragment("sale")
             findNavController().navigate(action)
         }
     }
@@ -80,12 +89,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.recSanPhamKhuyenMai.adapter = homeItemSaleAdapter
         binding.recSanPhamKhuyenMai.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        var listItemSale = java.util.ArrayList<Item>()
-        listItemSale.add(itemSale)
-        listItemSale.add(itemSale2)
-        listItemSale.add(itemSale3)
-        listItemSale.add(itemSale4)
-        homeItemSaleAdapter.setItemSaleList(listItemSale, requireContext())
+        readItemSaleList(requireContext())
         homeItemSaleAdapter.setClickShowMusic {
             var action = HomeFragmentDirections.actionHomeFragmentToItemFragment(it)
             findNavController().navigate(action)
@@ -96,19 +100,130 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.recItem.adapter = homeItemAdapter
         binding.recItem.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        var listItemSale = java.util.ArrayList<Item>()
-        listItemSale.add(itemSale)
-        listItemSale.add(itemSale2)
-        listItemSale.add(itemSale3)
-        listItemSale.add(itemSale4)
-        listItemSale.add(itemSale5)
-        listItemSale.add(itemSale6)
-        listItemSale.add(itemSale7)
-        listItemSale.add(itemSale8)
-        homeItemAdapter.setItemList(listItemSale, requireContext())
+        readItemList(requireContext())
         homeItemAdapter.setClickShowMusic {
             var action = HomeFragmentDirections.actionHomeFragmentToItemFragment(it)
             findNavController().navigate(action)
         }
+    }
+
+    private fun readItemList(context: Context?) {
+        var listItemSale = ArrayList<Item>()
+        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                var jsonObject: JSONObject
+                try {
+                    for (i in 0..5) {
+                        jsonObject = response!!.getJSONObject(i)
+                        var maSanPham = jsonObject.getString("maSanPham").toInt()
+                        var maDanhMuc = jsonObject.getString("maDanhMuc").toInt()
+                        var tenSanPham = jsonObject.getString("tenSanPham")
+                        var soLuong = jsonObject.getString("soLuong").toInt()
+                        var gia = jsonObject.getString("gia")
+                        var anh = jsonObject.getString("anh")
+                        var moTa = jsonObject.getString("moTa")
+                        var gioiTinh = jsonObject.getString("gioiTinh")
+                        var item = Item(
+                            maSanPham,
+                            maDanhMuc,
+                            tenSanPham,
+                            soLuong,
+                            gia,
+                            anh,
+                            moTa,
+                            gioiTinh
+                        )
+                        listItemSale.add(item)
+                    }
+                    homeItemAdapter.setItemList(listItemSale, requireContext())
+                } catch (exception: Exception) {
+                    Log.e("jsonObject", exception.toString())
+                }
+            },
+            object : Response.ErrorListener {
+                override fun onErrorResponse(error: VolleyError?) {
+                    Log.e("jsonObject", error.toString())
+                }
+            })
+        requestQueue.add(jsonArrayRequest)
+    }
+
+    private fun readItemSaleList(context: Context?) {
+        val url = "http://192.168.164.207/DoAn/Saleitem/getAllISale.php"
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                var jsonObject: JSONObject
+                try {
+                    for (i in 0..7) {
+                        jsonObject = response!!.getJSONObject(i)
+                        var maKhuyenMai = jsonObject.getString("maKhuyenMai").toInt()
+                        var maSanPham = jsonObject.getString("maSanPham").toInt()
+                        var phanTramKM = jsonObject.getString("phanTramKM")
+                        var giaSauKm = jsonObject.getString("giaSauKm")
+                        readItemListSale(requireContext(), maSanPham)
+                    }
+
+                } catch (exception: Exception) {
+                    Log.e("jsonObject", exception.toString())
+                }
+            },
+            object : Response.ErrorListener {
+                override fun onErrorResponse(error: VolleyError?) {
+                    Log.e("jsonObject", error.toString())
+                }
+            })
+        requestQueue.add(jsonArrayRequest)
+    }
+
+    private fun readItemListSale(context: Context?, id: Int) {
+        var listItemSale = ArrayList<Item>()
+        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                var jsonObject: JSONObject
+                try {
+                    for (i in 0..response.length() - 1) {
+                        jsonObject = response!!.getJSONObject(i)
+                        var maSanPham = jsonObject.getString("maSanPham").toInt()
+                        var maDanhMuc = jsonObject.getString("maDanhMuc").toInt()
+                        var tenSanPham = jsonObject.getString("tenSanPham")
+                        var soLuong = jsonObject.getString("soLuong").toInt()
+                        var gia = jsonObject.getString("gia")
+                        var anh = jsonObject.getString("anh")
+                        var moTa = jsonObject.getString("moTa")
+                        var gioiTinh = jsonObject.getString("gioiTinh")
+                        var item = Item(
+                            maSanPham,
+                            maDanhMuc,
+                            tenSanPham,
+                            soLuong,
+                            gia,
+                            anh,
+                            moTa,
+                            gioiTinh
+                        )
+                        if (id == maSanPham) {
+                            listItemSale.add(item)
+                        }
+                        homeItemSaleAdapter.setItemSaleList(listItemSale, requireContext())
+                    }
+
+                } catch (exception: Exception) {
+                    Log.e("jsonObject", exception.toString())
+                }
+            },
+            object : Response.ErrorListener {
+                override fun onErrorResponse(error: VolleyError?) {
+                    Log.e("jsonObject", error.toString())
+                }
+            })
+        requestQueue.add(jsonArrayRequest)
     }
 }

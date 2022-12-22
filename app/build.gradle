@@ -104,4 +104,10 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     // circleimageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // below line is used for volley library
+    implementation 'com.android.volley:volley:1.2.0'
+
+// below line is used for image loading library
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

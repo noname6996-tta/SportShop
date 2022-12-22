@@ -1,7 +1,6 @@
 package com.example.sportshopapplication.view.fragment
 
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -33,10 +32,10 @@ class ItemFragment : BaseFragment<FragmentItemBinding>() {
         item = args.item
         Glide.with(requireContext()).load(item.anh).error(R.drawable.img)
             .into(binding.imgItem)
-        binding.tvGiaSanPham.setText(item.gia)
-        binding.tvNameItem.setText(item.tenSanPham)
-        binding.tvSexItem.setText(item.gioiTinh)
-        binding.tvDescItem.setText(item.moTa)
+        binding.tvGiaSanPham.text = "Giá: " + item.gia + "đ"
+        binding.tvNameItem.text = "Tên sản phẩm: " + item.tenSanPham
+        binding.tvSexItem.text = "Giới tính: " + item.gioiTinh
+        binding.tvDescItem.text = "Mô tả: " + item.moTa
         checkFavorite(item)
     }
 
@@ -81,38 +80,50 @@ class ItemFragment : BaseFragment<FragmentItemBinding>() {
     }
 
     private fun showBottomSheetAdd(item: Item) {
-        val bottomSheetDialogSong = BottomSheetDialog(this.requireContext());
-        bottomSheetDialogSong.setContentView(R.layout.bottom_sheet_add_to_cart);
+        val bottomSheetDialogSong = BottomSheetDialog(this.requireContext())
+        bottomSheetDialogSong.setContentView(R.layout.bottom_sheet_add_to_cart)
         bottomSheetDialogSong.show()
 
         val imgItem = bottomSheetDialogSong.findViewById<ImageView>(R.id.imgItem)
         Glide.with(requireContext()).load(item.anh).error(R.drawable.img)
             .into(imgItem!!)
         val nameItem = bottomSheetDialogSong.findViewById<TextView>(R.id.tvItemName)
-        nameItem?.setText(item.tenSanPham)
+        nameItem?.text = item.tenSanPham
         val btnPlus = bottomSheetDialogSong.findViewById<ImageView>(R.id.btnPlusItem)
         val btnRemove = bottomSheetDialogSong.findViewById<ImageView>(R.id.imgRemoveItem)
         var number = bottomSheetDialogSong.findViewById<TextView>(R.id.tvNumberItem)
-        var count  = number?.text.toString().toInt()
+        var count = number?.text.toString().toInt()
         btnPlus?.setOnClickListener {
-            count ++
-            number?.setText(count.toString())
+            count++
+            number?.text = count.toString()
         }
         btnRemove?.setOnClickListener {
-            count --
-            number?.setText(count.toString())
+            count--
+            number?.text = count.toString()
         }
 
         val btnAddToCart = bottomSheetDialogSong.findViewById<View>(R.id.btnAddNow)
         btnAddToCart?.setOnClickListener {
             val musicPlayListViewModel = ViewModelProvider(this)[CartViewModel::class.java]
-            var cart = Cart(0,item.maSanPham,0,item.tenSanPham,number?.text.toString().toInt(),"54.000đ",item.anh)
+            var soLuong = number?.text.toString().toInt()
+            var gia1 = item.gia.toString().toInt()
+            var giaReal = soLuong*gia1
+            var cart = Cart(
+                0,
+                item.maSanPham,
+                0,
+                item.tenSanPham,
+                soLuong,
+                giaReal.toString(),
+                item.anh
+            )
             musicPlayListViewModel.addCart(cart)
             Toast.makeText(
                 requireContext(),
                 "Thêm sản phẩm vào giỏ thành công",
                 Toast.LENGTH_SHORT
             ).show()
+            bottomSheetDialogSong.dismiss()
         }
     }
 
@@ -122,10 +133,10 @@ class ItemFragment : BaseFragment<FragmentItemBinding>() {
             Observer { musicplaylist ->
                 for (item: Int in 0..musicplaylist.size - 1) {
                     if (musicplaylist[item].maSanPham.equals(itemCheck.maSanPham)) {
-                        binding.imgFavorite!!.setImageResource(R.drawable.ic_baseline_favorite_true_24)
+                        binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_true_24)
                         isFavorite = true
                     } else {
-                        binding.imgFavorite!!.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                        binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                         isFavorite = false
                     }
 
