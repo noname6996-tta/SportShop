@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chào mừng bạn đến với FoodApp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
+        ></TextView>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/tv_loginfail"
+        android:layout_height="wrap_content"></TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColorHint="#707070"
+        android:textColor="@color/black"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_reger_email"
+            android:textSize="16sp"
+            android:background="@drawable/bacjground_edt"
+            android:hint="Nhập email để đăng ký"
+
+            android:layout_width="match_parent"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:passwordToggleEnabled="true"
+        android:textColorHint="#707070"
+        android:textColor="@color/black"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_reges_pass"
+            android:textSize="16sp"
+            android:background="@drawable/bacjground_edt"
+            android:hint="Nhập mật khẩu"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_Reges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký"
+
+        ></Button>
+
+</LinearLayout>

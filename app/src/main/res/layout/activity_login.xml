@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.LoginActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/splashColor">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chào mừng bạn quay trở lại"
+        android:textStyle="bold"
+        android:textColor="@color/main2_color"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
+        ></TextView>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/tv_loginfail"
+        android:layout_height="wrap_content"></TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColorHint="#707070"
+        android:textColor="@color/black"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_Email"
+            android:textSize="16sp"
+            android:hint="Nhập email"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:passwordToggleEnabled="true"
+        android:textColorHint="#707070"
+        android:textColor="@color/black"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
+            android:textSize="16sp"
+            android:hint="Nhập mật khẩu"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập"
+
+        ></Button>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout_ForgotPassword">
+        <TextView
+            android:id="@+id/tv_forgotpass"
+            android:textColor="@color/background_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For got password?"
+            ></TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/purple_500"></View>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_singUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:textColor="@color/main2_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Không có Tài khoản ?  Hãy nhấn "
+            ></TextView>
+
+        <TextView
+            android:id="@+id/tvDangky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textColor="#858585"
+            android:textSize="16sp"
+            android:layout_marginStart="5dp"
+            ></TextView>
+    </LinearLayout>
+</LinearLayout>

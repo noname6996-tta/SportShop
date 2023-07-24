@@ -1,10 +1,14 @@
 package com.example.sportshopapplication.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -13,12 +17,26 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.sportshopapplication.R
 import com.example.sportshopapplication.databinding.ActivityMainBinding
+import com.example.sportshopapplication.model.User
+import com.example.sportshopapplication.repository.Repository
+import com.example.sportshopapplication.viewmodel.MainViewModel
+import com.example.sportshopapplication.viewmodel.MainViewModelFactory
 import com.google.android.material.navigation.NavigationBarView
+import org.json.JSONArray
+import org.json.JSONObject
+import java.lang.Float
 
 class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
+    private lateinit var viewModelMain: MainViewModel
     companion object {
         lateinit var binding: ActivityMainBinding
     }
@@ -103,5 +121,20 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setMessage("Do you want to Exit?")
+        builder.setPositiveButton("Yes") { dialog, which -> //if user pressed "yes", then he is allowed to exit from application
+            this.finishAffinity();
+        }
+        builder.setNegativeButton("No") { dialog, which -> //if user select "No", just cancel this dialog and continue with app
+            dialog.cancel()
+        }
+        val alert = builder.create()
+        alert.show()
     }
 }
