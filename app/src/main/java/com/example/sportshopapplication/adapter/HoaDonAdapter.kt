@@ -29,7 +29,7 @@ class HoaDonAdapter : RecyclerView.Adapter<HoaDonViewHolder>() {
     override fun onBindViewHolder(holder: HoaDonViewHolder, position: Int) {
         val music = musics[position]
 //
-//            val url = "http://192.168.164.207/DoAn/user/selectUser.php"
+//            val url = "http://192.168.1.9/DoAn/user/selectUser.php"
 //            val requestQueue: RequestQueue = Volley.newRequestQueue(context)
 //            val jsonArrayRequest = JsonArrayRequest(
 //                Request.Method.GET, url, null,

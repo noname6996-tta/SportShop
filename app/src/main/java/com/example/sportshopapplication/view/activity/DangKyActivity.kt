@@ -29,7 +29,7 @@ class DangKyActivity : BaseActivity<ActivityDangKyBinding>() {
     }
 
     private fun addUser(email: String, pass: String, mContext: Context) {
-        val url = "http://192.168.164.207/DoAn/user/insertUser.php"
+        val url = "http://192.168.1.9/DoAn/user/insertUser.php"
         val requestQueue = Volley.newRequestQueue(mContext)
         val stringRequest: StringRequest = object : StringRequest(
             Method.POST, url,

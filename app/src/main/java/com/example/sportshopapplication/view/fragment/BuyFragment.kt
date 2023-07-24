@@ -46,7 +46,7 @@ class BuyFragment:BaseFragment<FragmentBuyBinding>() {
             for (i in 0..playlist.size-1){
                 tongTien = tongTien + playlist[i].gia.toString().toInt()
                 soLuong = soLuong + playlist[i].soLuong.toString().toInt()
-                tenMatHang = tenMatHang + playlist[i].tenSanPham + "-"
+                tenMatHang = tenMatHang + playlist[i].tenSanPham + ",số lương :"+playlist[i].soLuong.toString().toInt()+"--"
             }
             binding.tvGiaThanhToan.text = tongTien.toString() + "đ"
             readUserList(requireContext(),LoginActivity.userEmail)
@@ -81,7 +81,7 @@ class BuyFragment:BaseFragment<FragmentBuyBinding>() {
     }
 
     fun readUserList(context: Context?, email1: String) {
-        val url = "http://192.168.164.207/DoAn/user/selectUser.php"
+        val url = "http://192.168.1.9/DoAn/user/selectUser.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -118,7 +118,7 @@ class BuyFragment:BaseFragment<FragmentBuyBinding>() {
     }
 
     private fun addHoaDon(hoadon:Receipt, mContext: Context) {
-        val url = "http://192.168.164.207/DoAn/hoadon/insertHoadon.php"
+        val url = "http://192.168.1.9/DoAn/hoadon/insertHoadon.php"
         val requestQueue = Volley.newRequestQueue(mContext)
         val stringRequest: StringRequest = object : StringRequest(
             Method.POST, url,

@@ -9,6 +9,7 @@ import com.example.sportshopapplication.R
 import com.example.sportshopapplication.databinding.ItemCategoryBinding
 import com.example.sportshopapplication.databinding.LayoutHomeImageBinding
 import com.example.sportshopapplication.model.Category
+import com.example.sportshopapplication.model.local.Cart
 import com.example.sportshopapplication.model.local.Photos
 
 
@@ -19,6 +20,11 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
         this.musics = movies.toMutableList()
         this.context = context
         notifyDataSetChanged()
+    }
+
+    private var onClickPlayItem: ((Category) -> Unit)? = null
+    fun setClickShowMusic(listener: ((Category) -> Unit)) {
+        onClickPlayItem = listener
     }
 
     override fun onCreateViewHolder(
@@ -35,6 +41,11 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
         Glide.with(holder.itemView.context).load(music.anh).error(R.drawable.img)
             .into(holder.binding.imgCategory)
         holder.binding.tvNameCategory.text = music.tenDanhMuc
+        holder.binding.imgCategory.setOnClickListener {
+            onClickPlayItem?.let {
+                it(music)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

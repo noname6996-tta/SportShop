@@ -18,6 +18,9 @@ import com.proxglobal.worlcupapp.base.BaseFragment
 import org.json.JSONObject
 
 class ListAllitemsfragment:BaseFragment<FragmentAllitemBinding>() {
+    companion object {
+        var categoryName : Int = 0
+    }
     var homeItemAdapter = HomeItemAdapter()
     private val args : ListAllitemsfragmentArgs by navArgs()
     override fun getDataBinding(): FragmentAllitemBinding {
@@ -48,11 +51,14 @@ class ListAllitemsfragment:BaseFragment<FragmentAllitemBinding>() {
             "sale" -> {
                 readItemSaleList(requireContext())
             }
+            "itemCategory" -> {
+
+            }
         }
     }
 
     private fun readItemSaleList(context: Context?) {
-        val url = "http://192.168.164.207/DoAn/Saleitem/getAllISale.php"
+        val url = "http://192.168.1.9/DoAn/Saleitem/getAllISale.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -82,7 +88,7 @@ class ListAllitemsfragment:BaseFragment<FragmentAllitemBinding>() {
 
     private fun readItemListSale(context: Context?, id: Int) {
         var listItemSale = ArrayList<Item>()
-        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val url = "http://192.168.1.9/DoAn/item/getAllItem.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -129,7 +135,7 @@ class ListAllitemsfragment:BaseFragment<FragmentAllitemBinding>() {
 
     private fun readItemList(context: Context?) {
         var listItemSale = ArrayList<Item>()
-        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val url = "http://192.168.1.9/DoAn/item/getAllItem.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -157,6 +163,52 @@ class ListAllitemsfragment:BaseFragment<FragmentAllitemBinding>() {
                             gioiTinh
                         )
                         listItemSale.add(item)
+                    }
+                    homeItemAdapter.setItemList(listItemSale, requireContext())
+                } catch (exception: Exception) {
+                    Log.e("jsonObject", exception.toString())
+                }
+            },
+            object : Response.ErrorListener {
+                override fun onErrorResponse(error: VolleyError?) {
+                    Log.e("jsonObject", error.toString())
+                }
+            })
+        requestQueue.add(jsonArrayRequest)
+    }
+
+    private fun readItemListCategory(context: Context?) {
+        var listItemSale = ArrayList<Item>()
+        val url = "http://192.168.1.9/DoAn/item/getAllItem.php"
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                var jsonObject: JSONObject
+                try {
+                    for (i in 0..response.length()-1) {
+                        jsonObject = response!!.getJSONObject(i)
+                        var maSanPham = jsonObject.getString("maSanPham").toInt()
+                        var maDanhMuc = jsonObject.getString("maDanhMuc").toInt()
+                        var tenSanPham = jsonObject.getString("tenSanPham")
+                        var soLuong = jsonObject.getString("soLuong").toInt()
+                        var gia = jsonObject.getString("gia")
+                        var anh = jsonObject.getString("anh")
+                        var moTa = jsonObject.getString("moTa")
+                        var gioiTinh = jsonObject.getString("gioiTinh")
+                        var item = Item(
+                            maSanPham,
+                            maDanhMuc,
+                            tenSanPham,
+                            soLuong,
+                            gia,
+                            anh,
+                            moTa,
+                            gioiTinh
+                        )
+                        if (maDanhMuc==categoryName){
+                            listItemSale.add(item)
+                        }
                     }
                     homeItemAdapter.setItemList(listItemSale, requireContext())
                 } catch (exception: Exception) {

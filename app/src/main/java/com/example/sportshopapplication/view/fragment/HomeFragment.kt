@@ -109,7 +109,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun readItemList(context: Context?) {
         var listItemSale = ArrayList<Item>()
-        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val url = "http://192.168.1.9/DoAn/item/getAllItem.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -152,7 +152,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun readItemSaleList(context: Context?) {
-        val url = "http://192.168.164.207/DoAn/Saleitem/getAllISale.php"
+        val url = "http://192.168.1.9/DoAn/Saleitem/getAllISale.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -182,7 +182,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun readItemListSale(context: Context?, id: Int) {
         var listItemSale = ArrayList<Item>()
-        val url = "http://192.168.164.207/DoAn/item/getAllItem.php"
+        val url = "http://192.168.1.9/DoAn/item/getAllItem.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,

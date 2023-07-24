@@ -63,7 +63,7 @@ class ChangeAccountFragment : BaseFragment<FragmentChangeAccountBinding>() {
 
 
     fun readUserList(context: Context?, email1: String) {
-        val url = "http://192.168.164.207/DoAn/user/selectUser.php"
+        val url = "http://192.168.1.9/DoAn/user/selectUser.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -102,7 +102,7 @@ class ChangeAccountFragment : BaseFragment<FragmentChangeAccountBinding>() {
     }
 
     fun updateAccount(user: User,context: Context?) {
-        val url = "http://192.168.164.207/DoAn/user/update.php"
+        val url = "http://192.168.1.9/DoAn/user/update.php"
         val requestLogin: StringRequest = object : StringRequest(
             Method.POST, url,
             Response.Listener { response ->

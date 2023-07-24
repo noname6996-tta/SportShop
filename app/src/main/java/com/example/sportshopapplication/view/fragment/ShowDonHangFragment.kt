@@ -45,7 +45,7 @@ class ShowDonHangFragment:BaseFragment<FragmentShowdonhangBinding>() {
 
     private fun readHoaDonList(context: Context?) {
         var listItemSale = ArrayList<Receipt>()
-        val url = "http://192.168.164.207/DoAn/hoadon/selectuser.php"
+        val url = "http://192.168.1.9/DoAn/hoadon/selectuser.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -83,7 +83,7 @@ class ShowDonHangFragment:BaseFragment<FragmentShowdonhangBinding>() {
     }
 
     fun readUserList(context: Context?, email1: String) {
-        val url = "http://192.168.164.207/DoAn/user/selectUser.php"
+        val url = "http://192.168.1.9/DoAn/user/selectUser.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,

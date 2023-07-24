@@ -33,7 +33,11 @@
         tools:layout="@layout/fragment_category"
         android:id="@+id/categoryFragment"
         android:name="com.example.sportshopapplication.view.fragment.CategoryFragment"
-        android:label="CategoryFragment" />
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_categoryFragment_to_listAllitemsfragment"
+            app:destination="@id/listAllitemsfragment" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_setting"
         android:id="@+id/settingFragment"

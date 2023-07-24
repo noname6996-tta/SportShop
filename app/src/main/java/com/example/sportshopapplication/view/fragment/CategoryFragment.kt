@@ -2,6 +2,7 @@ package com.example.sportshopapplication.view.fragment
 
 import android.content.Context
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -14,6 +15,7 @@ import com.example.sportshopapplication.databinding.FragmentCategoryBinding
 import com.example.sportshopapplication.databinding.FragmentHomeBinding
 import com.example.sportshopapplication.model.Category
 import com.example.sportshopapplication.model.Item
+import com.example.sportshopapplication.view.fragment.ListAllitemsfragment.Companion.categoryName
 import com.proxglobal.worlcupapp.base.BaseFragment
 import org.json.JSONObject
 
@@ -36,11 +38,20 @@ class CategoryFragment: BaseFragment<FragmentCategoryBinding>() {
         readCategoryList(requireContext())
     }
 
+    override fun addEvent() {
+        super.addEvent()
+        categoryAdapter.setClickShowMusic {
+            categoryName = it.maDanhMuc
+            var action = CategoryFragmentDirections.actionCategoryFragmentToListAllitemsfragment("itemCategory")
+            findNavController().navigate(action)
+        }
+    }
+
     
 
     private fun readCategoryList(context: Context?) {
         var listItemSale = ArrayList<Category>()
-        val url = "http://192.168.164.207/DoAn/category/getAllDanhmuc.php"
+        val url = "http://192.168.1.9/DoAn/category/getAllDanhmuc.php"
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
